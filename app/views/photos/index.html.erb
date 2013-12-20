@@ -1,0 +1,12 @@
+<h1>Photos</h1>
+
+<div id="photos" class="photos">
+  <% @photos.each do |photo| %>
+    <div class="item">
+      <%= link_to photo_path(photo) do %>
+        <%= image_tag photo.image.thumb.url if photo.image %>
+      <% end %>
+      <div class="author"><%= photo.user.name %></div>
+    </div>
+  <% end %>
+</div>

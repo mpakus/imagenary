@@ -1,0 +1,40 @@
+//= require_self
+//= require_tree .
+
+@import "twitter/bootstrap";
+
+$nprogress-color: #3576BE;
+@import 'nprogress';
+@import 'nprogress-bootstrap';
+#nprogress .bar { height: 4px !important; }
+
+html, body { height: 100%; }
+body{
+  padding: 0 0 60px;
+  min-height: 100%;
+  height: auto;
+  border-bottom: 4px solid #2276B9;
+}
+
+.container_top {
+  padding-top: 60px;
+  height: 100%;
+}
+
+a.logo{
+  color: #2276B9 !important;
+  font-size: 25px;
+  b{
+    color: #E01078;
+  }
+}
+//.navbar-inverse{ border: none; }
+.navbar-inverse .navbar-nav > li > a { color: #FFF; }
+.navbar-inverse .navbar-nav > li > a:hover { color: #FFF; background: #E01078; }
+
+h1, h2{
+  color: #2276B9;
+}
+h1{
+  font-size: 21px;
+}

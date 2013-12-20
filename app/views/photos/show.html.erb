@@ -1,0 +1,18 @@
+<h1><%= link_to 'Photos', photos_path %> / Show</h1>
+<div class="photo">
+  <%= image_tag @photo.image.full.url if @photo.image %>
+</div>
+<div class="back">
+  <%= link_to '&larr; Back'.html_safe, photos_path %>
+</div>
+<% unless @photo.comment.blank? %>
+  <div class="comment">
+    <blockquote>
+      <%= simple_format @photo.comment %>
+    </blockquote>
+  </div>
+<% end %>
+<div class="author">
+  <%= image_tag(@photo.user.gravatar, class:'avatar') %>
+  <%= @photo.user.name %>
+</div>
