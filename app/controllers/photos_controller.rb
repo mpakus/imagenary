@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
   def show
     @photo = Photo.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-
+    render file: "#{Rails.root}/public/404.html", status: 404, layout: false
   end
 
   def create
