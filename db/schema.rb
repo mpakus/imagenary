@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131220080637) do
+ActiveRecord::Schema.define(version: 20131221041612) do
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20131220080637) do
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree

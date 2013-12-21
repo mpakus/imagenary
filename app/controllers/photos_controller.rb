@@ -46,7 +46,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    {comment: params[:comment], image: params[:photo]}
+    {comment: params[:comment], image: params[:photo], latitude: params[:latitude], longitude: params[:longitude]}
     # @todo: parse hash-tags in comments
   end
 
