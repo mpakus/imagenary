@@ -71,7 +71,9 @@ group :development do
 end
 
 # sorry ;-(
-#group :development, :test do
-#  gem 'rspec'
-#  gem 'rspec-rails', '~> 2.0'
-#end
+group :development, :test do
+  gem 'rspec'
+  gem 'capybara'
+  gem 'rspec-rails'#, '~> 2.0'
+  gem 'factory_girl_rails'
+end

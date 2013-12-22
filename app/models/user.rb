@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   require 'bcrypt'
   attr_accessor :password
   validates_presence_of :name, :email, :password, on: :create
+  validates_uniqueness_of :email, case_sensitive: false
+
   has_many :photos
   before_create :create_token
 
