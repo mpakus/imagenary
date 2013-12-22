@@ -12,7 +12,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    unless params[:token].blank? && params[:photo].blank?
+    if params[:token].blank? || params[:photo].blank?
+      @status = {code: 500, msg: 'Error, empty token or file'}
+    else
       # check user via token
       @user = User.where(token: params[:token]).first
       if @user.nil?
@@ -24,8 +26,6 @@ class PhotosController < ApplicationController
         @status = {code: 200, msg: 'Photo uploaded'}
         session[:user_id] = @user.id # keep session for html version
       end
-    else
-      @status = {code: 500, msg: 'Error, empty token or file'}
     end
     respond_to do |format|
       format.html {
