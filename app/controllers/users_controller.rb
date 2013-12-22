@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter :verify_authenticity_token
 
   def auth
     unless params[:email].blank? || params[:password].blank?
