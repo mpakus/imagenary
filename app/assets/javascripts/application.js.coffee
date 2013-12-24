@@ -7,13 +7,17 @@
 #= require_tree .
 
 class Imagenary
-  start: ->
-    @users = new Users($('#users_auth_form'))
+  constructor: ->
+    $('#load_more, #refresh').unbind()
+    @users  = new Users($('#users_auth_form'))
     @photos = new Photos($('#create_photos_form'))
 
+ready = ->
+  @app = new Imagenary
+  @app.photos.run()
+
 $(document).on 'page:load', ->
-  @app = new Imagenary
-  @app.start()
-$(document).ready ->
-  @app = new Imagenary
-  @app.start()
+  @app.photos.run()
+
+$(document).ready ready
+
