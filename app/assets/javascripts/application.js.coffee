@@ -15,6 +15,7 @@ class Imagenary
 ready = ->
   @app = new Imagenary
   @app.photos.run()
+  $('.dropdown-toggle').dropdown()
 
 $(document).on 'page:load', ->
   @app.photos.run()

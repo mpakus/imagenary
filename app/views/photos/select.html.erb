@@ -1,0 +1,155 @@
+<h1>Photos feed</h1>
+
+<div class="row">
+  <div class="col-lg-12">
+    <p>
+      <strong>REQUEST:</strong><br/>
+      <code>GET /photos.json</code>
+    </p>
+    <p>
+      <strong>PARAMS:</strong><br/>
+      <code>
+        <strong>limit</strong> - integer, сколько фотографий нужно получить<br/>
+        <strong>from</strong> - integer, с какого photo.id отсчет<br/>
+        <strong>direction</strong> - string, значения <b>down</b> или <b>up</b> направление куда будем получать фотографии.<br/> down - ниже текущего from (а значит старее), или up - выше from (а значит новее уже)<br/>
+      </code>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <p>
+      <strong>ANSWER:</strong><br/>
+<pre>{
+  "status": {
+      "code": {int, STATUS CODE},
+      "msg": "{strint, STATUS MESSAGE}"
+  },
+  "photos": [
+      {
+          "id": {int, Photo ID},
+          "created_at": "{DateTime",
+          "latitude": {float, Geo latitude},
+          "longitude": {float, Geo longitude},
+          "tags": [{array, Tags list],
+          "comment": "{string, Photo comment post}",
+          "image": {
+              "thumb": "{string, Thumb URI for web only",
+              "full": "{string, Full image URI}",
+              "box": "{string, Mobile image 210x210 URI}"
+          },
+          "author": {
+              "id": {int, Author ID},
+              "name": "{string, Author name}"
+          }
+      },
+.... array ....
+      {
+          "id": {int, Photo ID},
+          "created_at": "{DateTime",
+          "latitude": {float, Geo latitude},
+          "longitude": {float, Geo longitude},
+          "tags": [{array, Tags list],
+          "comment": "{string, Photo comment post}",
+          "image": {
+              "thumb": "{string, Thumb URI for web only",
+              "full": "{string, Full image URI}",
+              "box": "{string, Mobile image 210x210 URI}"
+          },
+          "author": {
+              "id": {int, Author ID},
+              "name": "{string, Author name}"
+          }
+      }
+  ]
+}</pre>
+    </p>
+  </div>
+  <div class="col-lg-6">
+    <p>
+      <strong>EXAMPLE:</strong><br/>
+<pre>{
+  "status": {
+      "code": 200,
+      "msg": "OK"
+  },
+  "photos": [
+      {
+          "id": 38,
+          "created_at": "2013-12-21T05:33:36.000Z",
+          "latitude": null,
+          "longitude": null,
+          "tags": [],
+          "comment": "",
+          "image": {
+              "thumb": "/images/photo/image/38/thumb_73a51a2f6f.jpg",
+              "full": "/images/photo/image/38/full_73a51a2f6f.jpg",
+              "box": "/images/photo/image/38/box_73a51a2f6f.jpg"
+          },
+          "author": {
+              "id": 1,
+              "name": "MpaK"
+          }
+      },
+      {
+          "id": 37,
+          "created_at": "2013-12-20T12:41:30.000Z",
+          "latitude": null,
+          "longitude": null,
+          "tags": [],
+          "comment": "hello, my first comment here",
+          "image": {
+              "thumb": "/images/photo/image/37/thumb_695e808c70.jpg",
+              "full": "/images/photo/image/37/full_695e808c70.jpg",
+              "box": "/images/photo/image/37/box_695e808c70.jpg"
+          },
+          "author": {
+              "id": 1,
+              "name": "MpaK"
+          }
+      }
+  ]
+}</pre>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <p>
+      <strong>REQUEST WORKFLOW:</strong><br/>
+      <ol>
+        <li>
+          <p>
+            Простой запрос с 1 параметром limit = 8 например (domain - это параметр полученный от пользователя при авторизации):
+            <code>GET http://{DOMAIN}/photos.json?limit=8</code><br/>
+            Получаем изначальный список из 8-и (или менее фотографий)
+          </p>
+        </li>
+        <li>
+          <p>
+            Выводим фотографии, запоминаем ID 1-ой и последней фотографии (<b>first_photo</b> и <b>last_photo</b>)
+          </p>
+        </li>
+        <li>
+          <p>
+            Теперь пользователь досмотрел все фото и дошел до самого низа или нажал подгрузить внизу еще (зависит от выбранной реализации).<br/>
+            Отправляем запрос вида:
+            <code>GET http://{DOMAIN}/photos.json?limit=8&from={last_photo}&direction=down</code><br/>
+            И получаем следующие 8 фотографий, выводим пользователю и сдвигаем last_photo значение на последнее фото.<br/>
+            <b>И т.д. до самого низа, пока запрос не вернет пустой массив photos: []</b>
+          </p>
+        </li>
+        <li>
+          <p>
+            Второй кейс если пользователь будет тянуть вверх (или нажмет refresh, зависит от выбранной реализации)<br/>
+            Отправляем запрос вида:
+            <code>GET http://{DOMAIN}/photos.json?limit=8&from={first_photo}&direction=up</code><br/>
+            И получаем свежие (новые, выше) 8 фотографий, выводим пользователю и сдвигаем first_photo значение на первое полученное фото.<br/>
+            <b>И т.д. пользователь может много раз нажимать пока не получит все самые свежие фото или пока запрос не вернет пустой массив photos: []</b>
+          </p>
+        </li>
+      </ol>
+    </p>
+  </div>
+</div>

@@ -47,6 +47,8 @@ class PhotosController < ApplicationController
     @user = User.find(session[:user_id]) if session[:user_id]
   end
 
+  def select; end
+
   private
 
   def photo_params
