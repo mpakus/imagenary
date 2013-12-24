@@ -2,13 +2,17 @@ class PhotosController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @photos = Photo.order('created_at DESC').all
+    limit     = params[:limit] || 10
+    from      = params[:from] || nil
+    direction = params[:direction] || nil
+    @photos   = Photo.find_flex(from, direction, limit)
+    @status   = {code: 200, msg: 'OK'}
   end
 
   def show
     @photo = Photo.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    render file: "#{Rails.root}/public/404.html", status: 404, layout: false
+    show_404
   end
 
   def create
@@ -42,6 +46,8 @@ class PhotosController < ApplicationController
   def upload
     @user = User.find(session[:user_id]) if session[:user_id]
   end
+
+  def select; end
 
   private
 

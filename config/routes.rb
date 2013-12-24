@@ -11,6 +11,7 @@ Imagenary::Application.routes.draw do
   resources :photos, only: [:index, :show, :create] do
     collection do
       get :upload
+      get :select
     end
   end
 
