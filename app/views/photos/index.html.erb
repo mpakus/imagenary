@@ -1,12 +1,21 @@
 <h1>Photos</h1>
 
-<div id="photos" class="photos">
-  <% @photos.each do |photo| %>
-    <div class="item">
-      <%= link_to photo_path(photo) do %>
-        <%= image_tag photo.image.thumb.url if photo.image %>
-      <% end %>
-      <div class="author"><%= photo.user.name %></div>
-    </div>
-  <% end %>
+<div id="photos" class="photos"  data-preload-url="<%= photos_path(format: :json) %>">
+  loading...
+</div>
+<div id="photo_more" class="row"></div>
+
+<div class="hide" id="tpl_photo">
+  <div class="item">
+    <a href="/photos/{{photo.id}}.html">
+      <img src="{{photo.image.thumb}}" alt="" class="loading" />
+    </a>
+    <div class="author">{{photo.author.name}} {{photo.id}}</div>
+  </div>
+</div>
+
+<div class="hide" id="tpl_photo_more">
+  <ul class="pager col-lg-12">
+    <li><a href="#" class="load_more" style="width:20%">More</a></li>
+  </ul>
 </div>
