@@ -40,7 +40,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [210, 320]
   end
   version :box do
-    process :resize_to_fit => [210, 210]
+    process :resize_to_fill => [210, 210]
   end
   version :full do
     process :resize_to_limit => [900, 1350]
