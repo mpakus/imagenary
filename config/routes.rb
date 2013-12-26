@@ -2,9 +2,11 @@ Imagenary::Application.routes.draw do
 
   root 'photos#index'
 
-  resources :users, only: :none do
+  resources :users, only: [:index, :create, :destroy] do
     collection do
       post :auth
+      get  :signup
+      get  :signin
     end
   end
 

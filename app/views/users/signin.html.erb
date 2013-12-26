@@ -1,0 +1,14 @@
+<%= form_tag auth_users_path, method: :post, class: 'form-signup' do |f| %>
+
+  <%= flash_message(flash) %>
+
+  <h2>Sign in (or <%= link_to 'create an account', signup_users_path %>)</h2>
+  <div class="form-group">
+    <%= text_field_tag :email, '', required: true, class: 'form-control', placeholder: 'Email', required: true %>
+  </div>
+  <div class="form-group">
+    <%= password_field_tag :password, '', required: true, class: 'form-control', placeholder: 'Password', required: true  %>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+<% end %>
