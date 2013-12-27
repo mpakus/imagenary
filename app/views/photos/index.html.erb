@@ -11,9 +11,9 @@
 
 <script type="text/x-handlebars-template" id="tpl_photo">
   <div class="item">
-    <a href="/photos/{{photo.id}}.html">
-      <img src="{{photo.image.thumb}}" alt="" class="loading" />
-    </a>
-    <div class="author">{{photo.author.name}} {{photo.id}}</div>
+    <a href="#photos/{{photo.id}}.html"><img src="{{photo.image.thumb}}" class="loading" /></a>
+    <div class="author">{{photo.author.name}}</div>
   </div>
 </script>
+
+<div class="modal fade" id="modal_photos_show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

@@ -25,8 +25,24 @@ class @Photos
       $('#refresh').off('click').unbind().click(@events.click_refresh.bind(@))
 
   run: ->
-    if @container.length
+    if @container? and @container.length
       @load_photos @events.first_loaded.bind(@)
+
+  show: (id)->
+    $.ajax
+      url: "/photos/#{id}.html?ajax=1"
+      type: 'GET'
+      dataType: 'html'
+      success: (html)->
+        tpl = $('#modal_photos_show')
+        console.log tpl
+        tpl.html(html)
+        tpl.modal('show')
+      data: @params
+      error: (xhr, status, err)->
+        if xhr.responseJSON? and xhr.responseJSON.error
+          Message.show("Critical error #{xhr.responseJSON.error}", 'danger', '#message')
+
 
   load_photos: (callback)->
     $.ajax
@@ -88,14 +104,13 @@ class @Photos
   wait_images_and_start_masonry: (first_time=true)->
     loaded = 0
     images_total = $("#photos img.loading").length
-    console.log loaded, images_total
     container = @container
     $("#photos img.loading").load ->
       ++loaded
       $(@).removeClass('loading')
       if loaded == images_total
         if first_time
-          container.masonry({gutter: 0, columnWidth:  '.item', itemSelector: '.item'})
+          container.masonry({gutter: 20, columnWidth:  '.item', itemSelector: '.item'})
         else
           console.log 'call masonry on addon'
           mas = container.data('masonry')

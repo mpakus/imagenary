@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+    render layout: false if params[:ajax] || request.xhr?
   rescue ActiveRecord::RecordNotFound
     show_404
   end

@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, PhotoUploader
 
   def self.find_flex(from, direction, limit)
-    q = self
+    q = self.includes(:user)
     if from.nil? || from.blank?
       q = q.order('created_at DESC')
     else
