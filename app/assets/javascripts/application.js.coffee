@@ -24,7 +24,7 @@ class Imagenary
         "photos/:id.html":  "photos_show"
     @routes = new Routes
     @routes.on 'route:photos_show', @photos.show
-    Backbone.history.start({pushState: false, silent: true})
+    Backbone.history.start({pushState: false, silent: false})
 
 ready = ->
   window.app = new Imagenary
