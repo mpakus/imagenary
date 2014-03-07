@@ -10,7 +10,7 @@ Imagenary::Application.routes.draw do
     end
   end
 
-  resources :photos, only: [:index, :show, :create] do
+  resources :photos, only: [:index, :show, :create, :new] do
     collection do
       get :upload
       get :select
