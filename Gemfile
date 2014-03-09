@@ -70,7 +70,6 @@ group :development do
   #gem 'sunspot_solr'
 end
 
-# sorry ;-(
 group :development, :test do
   gem 'rspec'
   gem 'capybara'

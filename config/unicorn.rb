@@ -1,6 +1,6 @@
 #setup user environment
 ENV['RAILS_ENV'] = 'production'
-worker_processes 1
+worker_processes 2
 preload_app true
 user('deployer','staff')
 timeout 30
