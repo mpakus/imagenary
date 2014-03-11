@@ -1,5 +1,5 @@
 # Imagenary
-simple photo blogging & sharing platform with mobile clients
+photo blogging & sharing platform with mobile clients
 Example of use: <http://imonno.ru>
 
 ## Contacts
