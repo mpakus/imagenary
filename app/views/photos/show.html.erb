@@ -1,25 +1,31 @@
-<div class="modal-dialog">
+<div class="modal-dialog" style="display: table">
   <div class="modal-content">
 
     <div class="modal-body">
       <div class="photo">
         <%= image_tag @photo.image.full.url if @photo.image %>
       </div>
-      <% unless @photo.comment.blank? %>
-        <div class="comment">
-          <blockquote>
-            <%= simple_format @photo.comment %>
-          </blockquote>
+      <div class="row photo-description">
+        <div class="col-lg-3">
+          <div class="author">
+            <%= image_tag(@photo.user.gravatar, class:'avatar') %>
+            <%= @photo.user.name %>
+          </div>
         </div>
-      <% end %>
-      <div class="author">
-        <%= image_tag(@photo.user.gravatar, class:'avatar') %>
-        <%= @photo.user.name %>
+        <div class="col-lg-9">
+          <% unless @photo.comment.blank? %>
+            <div class="comment">
+              <blockquote>
+                <%= simple_format @photo.comment %>
+              </blockquote>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
 
   </div>

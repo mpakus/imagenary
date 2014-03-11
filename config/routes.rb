@@ -2,6 +2,10 @@ Imagenary::Application.routes.draw do
 
   root 'photos#index'
 
+  resources :about, only: [:index] do
+    get :api, on: :collection
+  end
+
   resources :users, only: [:index, :create, :destroy] do
     collection do
       post :auth
@@ -11,10 +15,10 @@ Imagenary::Application.routes.draw do
   end
 
   resources :photos, only: [:index, :show, :create, :new] do
-    collection do
-      get :upload
-      get :select
-    end
+    #collection do
+    #  get :upload
+    #  get :select
+    #end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

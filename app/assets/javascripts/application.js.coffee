@@ -18,13 +18,14 @@ class Imagenary
     @users  = new Users($('#users_auth_form'))
     @photos = new Photos($('#create_photos_form'))
     @setup_routes()
+
   setup_routes: ->
     Routes = Backbone.Router.extend
       routes:
         "photos/:id.html":  "photos_show"
     @routes = new Routes
-    @routes.on 'route:photos_show', @photos.show
-    Backbone.history.start({pushState: false, silent: false})
+    @routes.on 'route:photos_show', @photos.show.bind(@photos)
+    Backbone.history.start({pushState: true, root: '/'}) #, silent: false
 
 ready = ->
   window.app = new Imagenary
