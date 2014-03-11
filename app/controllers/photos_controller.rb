@@ -39,9 +39,9 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html {
         if @user.nil? || @photo.nil?
-          return redirect_to upload_photos_path, alert: @status[:msg]
+          return redirect_to new_photo_path, alert: @status[:msg]
         else
-          return redirect_to upload_photos_path, notice: @status[:msg]
+          return redirect_to new_photo_path, notice: @status[:msg]
         end
       }
       format.json { render 'create', type: :jbuilder }

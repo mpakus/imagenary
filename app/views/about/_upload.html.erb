@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-lg-12">
+    <a name="upload"></a>
+    <h2>Upload example</h2>
+    <p>
+      <strong>REQUEST:</strong><br/>
+      <code>POST http://{domain}/photos.json</code>
+    </p>
+    <p>
+      <strong>PARAMS:</strong><br/>
+      <code>
+        <strong>token</strong> - string, example: <abbr class="text-muted">***</abbr><br/>
+        <strong>comment</strong> - string<br/>
+        <strong>latitude</strong> - float, photo coordinations<br/>
+        <strong>longitude</strong> - float, photo coordinations<br/>
+        <strong>photo</strong> - binary (multipart/form-data)
+      </code>
+    </p>
+    <p>
+      <strong>ANSWERS:</strong><br/>
+      <span class="label label-success">uploaded</span> well<br/>
+<pre>
+{
+  "status": {
+    "code": 200,
+    "msg": "Photo uploaded"
+  },
+  "photo": {
+    "id": ID,
+    "image": {
+    "thumb": "/images/photo/image/ID/thumb_FILENAME.jpg",
+    "full": "/images/photo/image/ID/full_FILENAME.jpg"
+    }
+  }
+}</pre>
+    <br/>
+    <span class="label label-danger">wrong</span> user token<br/>
+<pre>
+{
+  "status": {
+    "code": 404,
+    "msg": "Error, wrong user token"
+  }
+}</pre><br/>
+    <span class="label label-danger">empty</span> token or file<br/>
+      <pre>
+{
+  "status": {
+    "code": 500,
+    "msg": "Error, empty token or file"
+  }
+}</pre>
+    </p>
+  </div>
+</div>

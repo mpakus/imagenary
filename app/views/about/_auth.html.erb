@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-12">
+    <a name="auth"></a>
+    <h2>Authentication</h2>
+    <p>
+      <strong>REQUEST:</strong><br/>
+      <code>POST http://{domain}/users/auth.json</code>
+    </p>
+    <p>
+      <strong>PARAMS:</strong><br/>
+      <code>
+        <strong>email</strong> - string, example: <abbr class="text-muted">info@aomega.ru</abbr><br/>
+        <strong>password</strong> - string, example: <abbr class="text-muted">100500</abbr>
+      </code>
+    </p>
+    <p>
+      <strong>ANSWERS:</strong><br/>
+      <span class="label label-success">correct</span> email and password<br/>
+<pre>
+{
+  "user": {
+    "name": "USERNAME",
+    "email": "EMAIL",
+    "token": "TOKEN"
+  },
+  "status": {
+    "code": 200,
+    "msg": "OK"
+  }
+}</pre>
+    <br/>
+    <span class="label label-danger">wrong</span> email or password<br/>
+<pre>
+{
+  "status": {
+    "code": 403,
+    "msg": "Invalid email or password"
+  }
+}</pre>
+    </p>
+  </div>
+</div>

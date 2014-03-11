@@ -20,9 +20,7 @@
   position: relative;
   .item{
     float: left;
-
     @include border-photo();
-
     .author{
       font-size: 10px;
       line-height: 20px;
@@ -32,7 +30,7 @@
   }
 }
 .photos:hover .item:not(:hover) {
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 // Photos/:id/show
@@ -42,15 +40,77 @@
 .back{
   margin-bottom: 20px;
 }
-.author{
-  font-weight: bold;
-  > .avatar{
-    border-radius: 50%;
-    border: 4px solid #EEE;
+.photo-description{
+  .author{
+    font-weight: bold;
+    color: #E01078;
+    > .avatar{
+      border-radius: 50%;
+      border: 4px solid #EEE;
+    }
+  }
+  .comment{
+    color: #333;
+    blockquote{
+      border: none;
+    }
   }
 }
 
+// Load more btn
+.more-btn > a.bar{
+//  display: none;
+}
+.more-btn > a.bar:hover{
+  color: #FFF !important;
+}
+.bar {
+  background: #7aff32;
+  width:100%;
+  color: #FFF;
+  background: -moz-linear-gradient(top, #ff3232 0%, #ed89ff 47%, #ff8989 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF3232), color-stop(47%,#ED89FF), color-stop(100%,#FF8989));
+  background: -webkit-linear-gradient(top, #FF3232 0%,#ED89FF 47%,#FF8989 100%);
+  background: -o-linear-gradient(top, #ff3232 0%,#ed89ff 47%,#ff8989 100%);
+  background: -ms-linear-gradient(top, #ff3232 0%,#ed89ff 47%,#ff8989 100%);
+  background: linear-gradient(to bottom, #FF3232 0%,#ED89FF 47%,#FF8989 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3232', endColorstr='#ff8989',GradientType=0 );
+}
+@-webkit-keyframes progress{
+  to {background-position: 30px 0;}
+}
+@-moz-keyframes progress{
+  to {background-position: 30px 0;}
+}
+@keyframes progress{
+  to {background-position: 30px 0;}
+}
+.barFill {
+  width: 100%;
+  border-radius: 20px;
+  -webkit-animation: progress 1s linear infinite;
+  -moz-animation: progress 1s linear infinite;
+  animation: progress 1s linear infinite;
+  background-repeat: repeat-x;
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
 
+// Refresh button
+#refresh{
+  text-decoration: none;
+}
+.rotate{
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+// Modal dialog
 #modal_photos_show .modal-dialog{
   width: 100px;
   display: table;
