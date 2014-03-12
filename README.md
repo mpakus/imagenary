@@ -6,7 +6,7 @@ Example of use: <http://imonno.ru>
 Please, if you have any ideas or want to help us with code or something else, here is my mail <info@aomega.co> and let me know in any time.
 
 ## Mobile clients
-### WindowsPhone 7.5 & 8 - <http://www.windowsphone.com/en-us/store/app/imagenary/4d989edf-88d4-4616-83b6-dacdc91ee343>
+### WindowsPhone 7.5 & 8 - <http://www.windowsphone.com/s?appid=4d989edf-88d4-4616-83b6-dacdc91ee343>
 Author: Alex Zaozerskiy <https://github.com/AlexandrYZ>
 ### iOS - coming soon, but if you have experience in Objective C and want to help us, welcome!
 Author: Ildar Yulanov, <https://github.com/iyulan>
