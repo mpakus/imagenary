@@ -40,5 +40,40 @@ describe "Requests to /photos.json" do
     end
   end
 
+  context :feed do
+    before :each do
+      @file   = fixture_file_upload("#{Rails.root}/spec/fixtures/files/image.jpg", 'image/jpeg')
+      @photos = create_list(:photo, 5, image: @file)
+    end
+
+    it "get limited photos" do
+      get(photos_path(format: :json), {limit: 2})
+      expect(response).to be_success
+      expect(response.body).to be_present
+      json = JSON.parse(response.body)
+      expect(json['photos'].length).to eq(2)
+    end
+
+    it "get limited photos to up direction" do
+      get(photos_path(format: :json), {limit: 2, from: @photos[1].id, direction: 'up'})
+      expect(response).to be_success
+      expect(response.body).to be_present
+      json = JSON.parse(response.body)
+      expect(json['photos'].length).to eq(2)
+      expect(json['photos'][0]['id']).to eq(@photos[2].id)
+      expect(json['photos'][1]['id']).to eq(@photos[3].id)
+    end
+
+    it "get limited photos to down direction" do
+      get(photos_path(format: :json), {limit: 2, from: @photos[2].id, direction: 'down'})
+      expect(response).to be_success
+      expect(response.body).to be_present
+      json = JSON.parse(response.body)
+      expect(json['photos'].length).to eq(2)
+      expect(json['photos'][0]['id']).to eq(@photos[0].id)
+      expect(json['photos'][1]['id']).to eq(@photos[1].id)
+    end
+
+  end
 
 end

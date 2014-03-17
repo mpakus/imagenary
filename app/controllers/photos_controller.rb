@@ -2,8 +2,8 @@ class PhotosController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    limit     = params[:limit] || 10
-    from      = params[:from] || nil
+    limit     = params[:limit]     || 10
+    from      = params[:from]      || nil
     direction = params[:direction] || nil
     @photos   = Photo.find_flex(from, direction, limit)
     @status   = {code: 200, msg: 'OK'}
