@@ -13,7 +13,7 @@ class @Photos
     direction: null
 
   constructor: (@form)->
-    console.log "Photos::constructor"
+#    console.log "Photos::constructor"
     @form.on 'submit', @events.submit.bind(@)
     @token             = $('#users_token')
     @container         = $('#photos')
