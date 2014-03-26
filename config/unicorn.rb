@@ -1,9 +1,9 @@
 #setup user environment
 ENV['RAILS_ENV'] = 'production'
-worker_processes 2
+worker_processes 8
 preload_app true
 user('deployer','staff')
-timeout 30
+timeout 10
 
 @app = "/home/deployer/imagenary/current"
 @shared = "/home/deployer/imagenary/shared"
