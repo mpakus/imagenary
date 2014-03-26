@@ -13,7 +13,7 @@ class @Photos
     direction: null
 
   constructor: (@form)->
-    console.log "Photos::constructor"
+#    console.log "Photos::constructor"
     @form.on 'submit', @events.submit.bind(@)
     @token             = $('#users_token')
     @container         = $('#photos')
@@ -100,7 +100,7 @@ class @Photos
     refresh_loaded: (resp)->
       $('#refresh').removeClass('rotate')
       if resp.status? && resp.status.code == 200 && resp.photos.length > 0
-#        @first_photo = resp.photos[0]
+        @first_photo = resp.photos[0]
         for photo in resp.photos
           @preload_container.prepend @template.photo({photo: photo})
         @wait_images_and_start_masonry(false, true)

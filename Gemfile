@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -75,4 +75,6 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'#, '~> 2.0'
   gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'database_cleaner'
 end

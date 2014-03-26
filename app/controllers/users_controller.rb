@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, :notice => 'Thank you, see you soon!'
+    redirect_to root_path, notice: 'Thank you, see you soon!'
   end
 
   private

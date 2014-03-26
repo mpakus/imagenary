@@ -28,6 +28,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  #DatabaseCleaner.strategy = :truncation
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -41,4 +42,12 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include FactoryGirl::Syntax::Methods
+
+  #config.before(:each) do
+  #  DatabaseCleaner.clean_with(:truncation)
+  #end
+
+  #config.after(:each) do
+  #  DatabaseCleaner.clean_with(:truncation)
+  #end
 end

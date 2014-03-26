@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe "Requests to /users/auth.json" do
-  let(:valid_user){ build(:user) }
-  let(:invalid_user){ build(:user, password: '100600') }
-
   before :each do
-    @user = create(:user)
+    @user         = create(:user)
   end
 
   it "is authenticate right user" do
-    post( auth_users_path(format: :json), {email: valid_user.email, password: valid_user.password})
+    post(auth_users_path(format: :json), {email: @user.email, password: @user.password})
 
     expect(response).to be_success
     expect(response.body.blank?).to_not be_true
@@ -18,7 +15,7 @@ describe "Requests to /users/auth.json" do
   end
 
   it "is drop authentication error for invalid user" do
-    post( auth_users_path(format: :json), {email: invalid_user.email, password: invalid_user.password})
+    post(auth_users_path(format: :json), {email: @user.email, password: '100600'})
 
     expect(response).to be_success
     expect(response.body.blank?).to_not be_true

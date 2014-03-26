@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe "about/index.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should have about' do
+    render
+    expect(rendered).to have_content('About')
+  end
 end

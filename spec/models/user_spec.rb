@@ -10,7 +10,7 @@ describe User do
   end
 
   it "is invalid with email dublicates" do
-    user = create(:user)
-    expect(build(:user)).to have(1).errors_on(:email)
+    user = create(:user, email: 'info@aomega.co')
+    expect(build(:user, email: 'info@aomega.co')).to have(1).errors_on(:email)
   end
 end
