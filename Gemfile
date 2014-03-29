@@ -57,6 +57,7 @@ group :production do
 end
 
 group :development do
+  gem 'net-ssh', '2.7.0'
   gem 'rails-footnotes', '>= 3.7.9'
   gem 'capistrano'
   gem 'rvm-capistrano'
