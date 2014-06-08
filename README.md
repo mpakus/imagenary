@@ -13,6 +13,13 @@ Author: Ildar Yulanov, <https://github.com/iyulan>
 ### Android - we are looking someone who can help us with it, are you?
 
 ## History
+
+### 0.3
+* Rails 4.1.1 updated
+* RMagick changed to Mini Magick
+* User can delete his own photo
+* CORS opened to everyone by default
+
 ### 0.2 public beta
 * WindowsPhone 7.5 & 8 client
 * user registration & authentication
