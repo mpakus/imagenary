@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.1'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,7 +25,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0'
+
+gem 'spring', group: :development
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -45,7 +47,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'debugger', group: [:development, :test]
 
 #### Imagenary gems
-gem 'rmagick' # image manipulations
+gem 'mini_magick'
 gem 'carrierwave' # upload files
 gem 'nprogress-rails' # turbolinks progressbar
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails', :branch => 'master'
@@ -66,6 +68,8 @@ group :development do
   gem 'sextant'
   gem 'quiet_assets'
   gem 'binding_of_caller'
+  gem 'jazz_hands'
+  gem 'awesome_print'
   #gem 'rb-fsevent'
   #gem 'guard-livereload'
   #gem 'sunspot_solr'

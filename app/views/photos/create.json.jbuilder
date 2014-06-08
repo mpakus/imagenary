@@ -1,6 +1,5 @@
-json.status do
-  json.(@status, :code, :msg)
-end
+json.partial! 'status'
+
 if @status[:code] == 200
   json.photo do
     json.id @photo.id

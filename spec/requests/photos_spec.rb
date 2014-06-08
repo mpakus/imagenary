@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'awesome_print'
+
 
 describe "Requests to /photos.json" do
   let(:invalid_user){ build(:user, email: nil) }
@@ -70,8 +72,8 @@ describe "Requests to /photos.json" do
       expect(response.body).to be_present
       json = JSON.parse(response.body)
       expect(json['photos'].length).to eq(2)
-      expect(json['photos'][0]['id']).to eq(@photos[0].id)
-      expect(json['photos'][1]['id']).to eq(@photos[1].id)
+      expect(json['photos'][0]['id']).to eq(@photos[1].id)
+      expect(json['photos'][1]['id']).to eq(@photos[0].id)
     end
 
   end

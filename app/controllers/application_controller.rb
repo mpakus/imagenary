@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :set_access_headers
 
   ##
   # Error pages show_403 show_404 etc...
@@ -28,5 +29,36 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
   helper_method :user_signed_in?
+
+  private
+
+  ERR_CODES = {
+      200 => 'Photo uploaded',
+      210 => 'Photo deleted',
+      220 => 'Photo updated',
+      404 => 'Error, wrong user token',
+      500 => 'Error, empty token or file'
+  }
+
+  def set_status(code)
+    @status = {code: code, msg: ERR_CODES[code], type: :error}
+  end
+
+  def set_user
+    if params[:token]
+      @user = User.where(token: params[:token]).first
+    else
+      @user = current_user
+    end
+  end
+
+  ##
+  # Set CORS headers it gives everyone access to everything
+  def set_access_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
 
 end

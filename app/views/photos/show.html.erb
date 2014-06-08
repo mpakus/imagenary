@@ -11,6 +11,19 @@
             <%= image_tag(@photo.user.gravatar, class:'avatar') %>
             <%= @photo.user.name %>
           </div>
+          <% if @photo.owner?(current_user) %>
+            <ul class="list-group photo-ctrl-panel">
+              <li class="list-group-item list-group-item-danger">
+                <%= link_to photo_path(@photo, token: current_user.token), method: :delete, data: {confirm: 'Are you sure want to delete this photos?'} do %>
+                  <span class="glyphicon glyphicon-trash"></span> Delete photo</a>
+                <% end %>
+              </li>
+              <!--<li class="list-group-item list-group-item-success">-->
+                <!--<a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit description</a>-->
+              <!--</li>-->
+            </ul>
+          <% end %>
+
         </div>
         <div class="col-lg-9">
           <% unless @photo.comment.blank? %>

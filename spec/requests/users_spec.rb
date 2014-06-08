@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Requests to /users/auth.json" do
   before :each do
-    @user         = create(:user)
+    @user = create(:user)
   end
 
   it "is authenticate right user" do
