@@ -1,9 +1,11 @@
 Imagenary::Application.routes.draw do
   root 'photos#index'
 
+ match '*all' => 'application#cors_preflight_check', via: [:options]
+
   resources :about, only: [:index] do
     get :api, on: :collection
-  end
+  end 
 
   resources :users, only: [:index, :create, :destroy] do
     collection do
